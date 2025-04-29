@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customisation Guide for Understanding Grade Descriptors Tool</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --ku-yellow: #FFF200;
+            --ku-black: #1D1D1B;
+            --ku-white: #FFFFFF;
+            --ku-blue: #002b49;
+            --ku-light-blue: #009cde;
+            --ku-green: #78be20;
+            --ku-orange: #e35205;
+            --ku-amber: #ffb500;
+            --ku-teal: #77c5d5;
+            --ku-brown: #857550;
+            --ku-grey-100: #f5f5f5;
+            --ku-grey-200: #e5e5e5;
+            --ku-grey-300: #d4d4d4;
+            --ku-grey-400: #a3a3a3;
+            --ku-grey-500: #737373;
+            --ku-grey-600: #525252;
+            --ku-grey-700: #404040;
+            --ku-grey-800: #262626;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: var(--ku-black);
+            background-color: var(--ku-white);
+            padding: 0;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 4px solid var(--ku-yellow);
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--ku-blue);
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: var(--ku-blue);
+            border-bottom: 2px solid var(--ku-grey-200);
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--ku-blue);
+        }
+        
+        h4 {
+            font-size: 1.2rem;
+            margin: 1.2rem 0 0.8rem;
+            color: var(--ku-blue);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            font-family: Consolas, Monaco, 'Courier New', monospace;
+            background-color: var(--ku-grey-100);
+            padding: 0.1rem 0.3rem;
+            border-radius: 3px;
+            font-size: 0.9rem;
+            color: var(--ku-grey-800);
+        }
+        
+        pre {
+            background-color: var(--ku-grey-100);
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--ku-yellow);
+        }
+        
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            font-size: 0.9rem;
+            color: var(--ku-grey-800);
+        }
+        
+        .highlight {
+            background-color: var(--ku-yellow);
+            padding: 0.1rem 0.3rem;
+            font-weight: 500;
+        }
+        
+        .note {
+            background-color: var(--ku-grey-100);
+            border-left: 4px solid var(--ku-light-blue);
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .warning {
+            background-color: var(--ku-grey-100);
+            border-left: 4px solid var(--ku-orange);
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .tip {
+            background-color: var(--ku-grey-100);
+            border-left: 4px solid var(--ku-green);
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .callout {
+            background-color: var(--ku-grey-100);
+            border: 1px solid var(--ku-grey-300);
+            border-radius: 4px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .callout-title {
+            font-weight: 600;
+            color: var(--ku-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        table, th, td {
+            border: 1px solid var(--ku-grey-300);
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+        }
+        
+        th {
+            background-color: var(--ku-grey-100);
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--ku-grey-100);
+        }
+        
+        .code-block {
+            background-color: var(--ku-grey-100);
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            overflow-x: auto;
+            border-left: 4px solid var(--ku-yellow);
+        }
+        
+        .code-block pre {
+            margin: 0;
+            border-left: none;
+        }
+        
+        .image-container {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--ku-grey-300);
+        }
+        
+        .caption {
+            font-size: 0.9rem;
+            color: var(--ku-grey-600);
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+        
+        .file-structure {
+            font-family: Consolas, Monaco, 'Courier New', monospace;
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .file-structure .folder {
+            color: var(--ku-blue);
+        }
+        
+        .file-structure .file {
+            color: var(--ku-grey-700);
+        }
+        
+        footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--ku-grey-200);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--ku-grey-600);
+        }
+        
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+            
+            h1 {
+                font-size: 18pt;
+            }
+            
+            h2 {
+                font-size: 16pt;
+            }
+            
+            h3 {
+                font-size: 14pt;
+            }
+            
+            h4 {
+                font-size: 13pt;
+            }
+            
+            pre, code {
+                font-size: 10pt;
+            }
+            
+            .no-print {
+                display: none;
+            }
+            
+            a {
+                color: black;
+                text-decoration: none;
+            }
+            
+            a:after {
+                content: " (" attr(href) ")";
+                font-size: 80%;
+                color: var(--ku-grey-600);
+            }
+        }
+        
+        @page {
+            margin: 2cm;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Customisation Guide for Understanding Grade Descriptors Tool</h1>
+            <p>Kingston University London, Kingston School of Art</p>
+            <p><em>A guide for faculty to customise the Understanding Grade Descriptors interactive tool for their own programmes</em></p>
+        </header>
+        
+        <section id="introduction">
+            <h2>1. Introduction</h2>
+            <p>This guide provides step-by-step instructions for customising the "Understanding Grade Descriptors" interactive tool for your specific programme or module. The tool helps students understand the criteria used for grading their work and provides guidance on how to improve their performance.</p>
+            
+            <div class="note">
+                <p><strong>Note:</strong> This guide assumes basic familiarity with HTML files but does not require advanced coding skills. All customisations can be done using simple text editing.</p>
+            </div>
+            
+            <h3>1.1 Purpose of the Tool</h3>
+            <p>The Understanding Grade Descriptors tool serves several key purposes:</p>
+            <ul>
+                <li>Helps students understand the specific criteria used for assessment</li>
+                <li>Provides visual presentation of grade bands with colour-coding</li>
+                <li>Offers targeted advice on how to improve and move up to higher grade bands</li>
+                <li>Aligns with the School of Design Curriculum Framework</li>
+                <li>Creates a common understanding of standards between staff and students</li>
+            </ul>
+            
+            <h3>1.2 Tool Components</h3>
+            <p>The tool consists of:</p>
+            <ul>
+                <li>An interactive grade band selector with colour-coded buttons</li>
+                <li>Detailed description of assessment criteria for each grade band</li>
+                <li>Specific advice on how to improve performance</li>
+                <li>A comprehensive grading matrix showing all grade bands at once</li>
+            </ul>
+        </section>
+        
+        <section id="getting-started">
+            <h2>2. Getting Started</h2>
+            
+            <h3>2.1 Required Files</h3>
+            <p>To customise the tool, you'll need:</p>
+            <ul>
+                <li>The <code>KSA_Talk_Understanding_Grade_Descriptors.html</code> file</li>
+                <li>A suitable header image for your programme (optional)</li>
+                <li>A text editor (e.g., Notepad++, Visual Studio Code, or even basic Notepad)</li>
+            </ul>
+            
+            <h3>2.2 Downloading the Template</h3>
+            <p>You can obtain the HTML template file from:</p>
+            <ol>
+                <li>The GitHub repository: <a href="https://github.com/MounseyWood/Understanding-Grade-Descriptors-v4">https://github.com/MounseyWood/Understanding-Grade-Descriptors-v4</a></li>
+                <li>Your faculty's shared resources folder</li>
+                <li>By contacting <a href="mailto:m.mounsey-wood@kingston.ac.uk">m.mounsey-wood@kingston.ac.uk</a></li>
+            </ol>
+            
+            <h3>2.3 Opening the File</h3>
+            <p>Open the HTML file in a text editor. Look for the following key sections that you'll need to modify:</p>
+            <ul>
+                <li>Header section with title and introduction</li>
+                <li>Grade bands data structure</li>
+                <li>Assessment criteria for each grade band</li>
+                <li>Improvement advice for each grade band</li>
+                <li>Complete grading matrix content</li>
+            </ul>
+            
+            <div class="tip">
+                <p><strong>Tip:</strong> Before making any changes, create a backup copy of the original file. This will allow you to revert if needed.</p>
+            </div>
+        </section>
+        
+        <section id="customisation-areas">
+            <h2>3. Key Areas for Customisation</h2>
+            
+            <h3>3.1 Header and Introduction</h3>
+            <p>Modify the header section to reflect your programme name and provide an appropriate introduction for your students.</p>
+            
+            <div class="code-block">
+<pre><code>&lt;div class="header"&gt;
+    &lt;img src="understanding_grade_descriptors_BA_Fashion.png" alt="Kingston School of Art Logo" class="w-64 sm:w-72 md:w-80 lg:w-96 mb-6 mx-auto block object-contain"&gt;
+    &lt;h1 class="text-2xl font-bold mb-4"&gt;Understanding Grade Descriptors&lt;/h1&gt;
+    &lt;p&gt;This interactive guide aims to help you understand the grade descriptors used to assess your work on the BA (Hons) Fashion program. Click on each grade band to see what tutors look for, and to understand the key differences between grade bands. This will help you in your efforts to achieve higher grades, through identifying specific areas for improvement.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+            
+            <p>Change the following elements:</p>
+            <ul>
+                <li>Image source (if you have your own header image)</li>
+                <li>Programme name in the introductory paragraph</li>
+                <li>Any specific context or instructions for your students</li>
+            </ul>
+            
+            <h3>3.2 Grade Bands Data Structure</h3>
+            <p>The grade bands are defined in the JavaScript code. Look for the <code>grades</code> array in the script section:</p>
+            
+            <div class="code-block">
+<pre><code>const grades = [
+  {
+    id: 'first-plus',
+    title: 'Distinction',
+    range: '85% and above',
+    color: 'bg-[#80FF80]',
+    textColor: 'text-black',
+    qualities: [
+      // Assessment criteria for this grade
+      { title: 'Research & Analysis', description: 'Your tutors are looking for...' },
+      // More criteria...
+    ]
+  },
+  // More grade bands...
+];</code></pre>
+            </div>
+            
+            <p>Each grade band has the following properties that you may need to modify:</p>
+            <ul>
+                <li><code>id</code>: A unique identifier (don't change unless necessary)</li>
+                <li><code>title</code>: The name of the grade band (e.g., "Distinction", "First Class")</li>
+                <li><code>range</code>: The percentage range (e.g., "85% and above")</li>
+                <li><code>color</code>: The background colour for this grade band</li>
+                <li><code>textColor</code>: The text colour for this grade band</li>
+                <li><code>qualities</code>: An array of assessment criteria objects</li>
+            </ul>
+            
+            <div class="note">
+                <p><strong>Note on Colours:</strong> The default colours use a traffic light system from green (highest grades) through amber to red (lowest grades). You may wish to keep this intuitive colour scheme or adapt it to your department's branding.</p>
+            </div>
+        </section>
+        
+        <section id="assessment-criteria">
+            <h2>4. Customising Assessment Criteria</h2>
+            
+            <p>Each grade band contains assessment criteria organised into four categories aligned with the School of Design Curriculum Framework. You'll need to customise these descriptions to match your programme's specific requirements.</p>
+            
+            <h3>4.1 Assessment Criteria Structure</h3>
+            <p>The criteria are stored in the <code>qualities</code> array for each grade band:</p>
+            
+            <div class="code-block">
+<pre><code>qualities: [
+  { 
+    title: 'Research & Analysis', 
+    description: 'Your tutors are looking for exceptional research that goes far beyond expectations. You should demonstrate original thinking and provide strong evidence to support your ideas. Your work should show deep understanding of relevant contexts and critically analyze sources with comprehensive evidence.' 
+  },
+  // More criteria...
+]</code></pre>
+            </div>
+            
+            <p>Each criterion has:</p>
+            <ul>
+                <li><code>title</code>: The name of the criterion (e.g., "Research & Analysis")</li>
+                <li><code>description</code>: A detailed explanation of what is expected at this grade level</li>
+            </ul>
+            
+            <h3>4.2 Customising the Criteria Categories</h3>
+            <p>If your programme uses different assessment criteria categories than the default four (Research & Analysis, Experimentation & Practice, Communication & Presentation, Personal & Professional Development), you can change the titles and descriptions to match your programme's framework.</p>
+            
+            <div class="warning">
+                <p><strong>Important:</strong> If you change the number of criteria categories, you'll need to make corresponding changes throughout the file, including in the comprehensive grading matrix section.</p>
+            </div>
+        </section>
+        
+        <section id="grade-band-text">
+            <h2>5. Grade Band Text Content</h2>
+            
+            <p>Below are the key text sections for each grade band that you'll need to customise. These are organised by grade band to make it easier to review and modify the content for your programme.</p>
+            
+            <h3>5.1 Distinction (First Plus) - 85% and above</h3>
+            
+            <h4>Assessment Criteria:</h4>
+            <div class="code-block">
+<pre><code>{ 
+  title: 'Research & Analysis', 
+  description: 'Your tutors are looking for exceptional research that goes far beyond expectations. You should demonstrate original thinking and provide strong evidence to support your ideas. Your work should show deep understanding of relevant contexts and critically analyze sources with comprehensive evidence.' 
+},
+{ 
+  title: 'Experimentation & Practice', 
+  description: 'Your tutors want to see innovative approaches that challenge conventional thinking. Your technical skills should be excellent, with clear evidence of creative risk-taking and problem-solving. Your work should show a strong connection between concept development and making/production techniques.' 
+},
+{ 
+  title: 'Communication & Presentation', 
+  description: 'Your tutors expect extremely clear and professional presentation that convincingly communicates your ideas. Your work should show you understand your audience\'s needs and have carefully selected and refined your materials to create maximum impact.' 
+},
+{ 
+  title: 'Personal & Professional Development', 
+  description: 'Your tutors are looking for evidence that you can integrate your personal identity into your professional practice. You should demonstrate that you can work productively on your own, collaborate effectively in teams, and take leadership roles when needed. You should take full responsibility for your own learning and development.' 
+}</code></pre>
+            </div>
+            
+            <h4>How to move up to the next grade band:</h4>
+            <div class="code-block">
+<pre><code>&lt;div&gt;
+  &lt;li&gt;You're already achieving at the highest level! To maintain this standard:&lt;/li&gt;
+  &lt;li&gt;Continue pursuing innovative research and pushing boundaries in your practice&lt;/li&gt;
+  &lt;li&gt;Maintain the exceptional standards you've established across all aspects of your work&lt;/li&gt;
+  &lt;li&gt;Consider how you can share your expertise to support the learning community&lt;/li&gt;
+  &lt;li&gt;Begin thinking about how your outstanding work might translate to professional opportunities&lt;/li&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+            
+            <h3>5.2 First Class - 70-84%</h3>
+            
+            <h4>Assessment Criteria:</h4>
+            <div class="code-block">
+<pre><code>{ 
+  title: 'Research & Analysis', 
+  description: 'Your tutors are looking for extensive, well-informed research from diverse sources. You should demonstrate independent thinking in how you analyze your findings. Your work should show strong critical examination of relevant contexts with clear evaluation of sources.' 
+},
+{ 
+  title: 'Experimentation & Practice', 
+  description: 'Your tutors want to see how you connect your ideas with strong technical skills to explore unfamiliar concepts. You should demonstrate creative risk-taking and show how your critical evaluation has informed your design decisions. Your technical execution should be excellent.' 
+},
+{ 
+  title: 'Communication & Presentation', 
+  description: 'Your tutors expect your work to engage and persuade your audience effectively. You should demonstrate sensitivity in how you select and present your materials. Your presentation should show a clear understanding of audience needs and contextual factors.' 
+},
+{ 
+  title: 'Personal & Professional Development', 
+  description: 'Your tutors are looking for evidence that you take full responsibility for your learning and understand both the possibilities and requirements of your subject. You should demonstrate that you can work effectively independently, as part of a team, or in leadership roles.' 
+}</code></pre>
+            </div>
+            
+            <h4>How to move up to the next grade band:</h4>
+            <div class="code-block">
+<pre><code>&lt;div&gt;
+  &lt;li&gt;Research: Develop original insights that contribute something new to the discussion. Synthesize diverse sources into a distinctive personal perspective.&lt;/li&gt;
+  &lt;li&gt;Experimentation: Take well-calculated risks that push boundaries while maintaining professional quality. Demonstrate mastery of techniques while still innovating.&lt;/li&gt;
+  &lt;li&gt;Communication: Perfect every aspect of your presentation to professional standards. Consider subtle details that elevate your work beyond expectations.&lt;/li&gt;
+  &lt;li&gt;Development: Show evidence of going beyond module requirements to pursue deeper understanding. Demonstrate exceptional commitment to your development.&lt;/li&gt;
+  &lt;li&gt;Process: Develop a distinctive voice or approach that sets your work apart. Show how your personal perspective enriches your fashion practice.&lt;/li&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+            
+            <h3>5.3 Upper Second (2:1) - 60-69%</h3>
+            
+            <h4>Assessment Criteria:</h4>
+            <div class="code-block">
+<pre><code>{ 
+  title: 'Research & Analysis', 
+  description: 'Your tutors are looking for wide-ranging research from good quality sources. You should demonstrate some independent thinking in your analysis. Your work should show accurate evaluation of relevant contexts and sources with clear personal insights.' 
+},
+{ 
+  title: 'Experimentation & Practice', 
+  description: 'Your tutors want to see evidence that you\'re willing to take creative risks and use your own critical evaluation to inform your process and technique. Your technical skills should be consistently applied and show good proficiency.' 
+},
+{ 
+  title: 'Communication & Presentation', 
+  description: 'Your tutors expect your presentation to show good awareness of audience and context. You should demonstrate good judgment in how you select and organize your materials, following appropriate conventions while adding your personal touch.' 
+},
+{ 
+  title: 'Personal & Professional Development', 
+  description: 'Your tutors are looking for evidence of self-directed reflection and planning in your work. You should show that you understand the possibilities within your subject area and can work well either independently or collaboratively.' 
+}</code></pre>
+            </div>
+            
+            <h4>How to move up to the next grade band:</h4>
+            <div class="code-block">
+<pre><code>&lt;div&gt;
+  &lt;li&gt;Research: Seek out specialized or unusual sources that others might not find. Begin to develop a more personal research methodology that reflects your interests.&lt;/li&gt;
+  &lt;li&gt;Experimentation: Demonstrate more sophisticated analysis of your own experiments. Evaluate which approaches are most effective and explain why.&lt;/li&gt;
+  &lt;li&gt;Communication: Consider subtlety and nuance in your presentations. Refine your visual and verbal language to communicate more complex ideas effectively.&lt;/li&gt;
+  &lt;li&gt;Development: Show greater independence in directing your own learning. Identify specific skills or knowledge areas to develop that align with your career goals.&lt;/li&gt;
+  &lt;li&gt;Process: Connect your work to wider contexts. Show awareness of how your practice relates to contemporary issues or practices in the field.&lt;/li&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+            
+            <h3>5.4 Lower Second (2:2) - 50-59%</h3>
+            
+            <h4>Assessment Criteria:</h4>
+            <div class="code-block">
+<pre><code>{ 
+  title: 'Research & Analysis', 
+  description: 'Your tutors are looking for accurate and appropriate research covering the key elements of your project. Your analysis of context and interpretation of sources should be mostly accurate, though may have some gaps or inconsistencies.' 
+},
+{ 
+  title: 'Experimentation & Practice', 
+  description: 'Your tutors want to see that you\'ve explored different materials and processes in your work. Your technical skills should be consistently applied, with some evidence that you\'ve critically evaluated your own work during the process.' 
+},
+{ 
+  title: 'Communication & Presentation', 
+  description: 'Your tutors expect your work to be presented with good organization and a clear structure, though it may not always fully consider the audience. You should show good judgment in selecting and organizing materials to present your ideas.' 
+},
+{ 
+  title: 'Personal & Professional Development', 
+  description: 'Your tutors are looking for evidence that you\'re actively working to develop your understanding and using reflection to improve your work. You should demonstrate that you can work productively either alone or as part of a team.' 
+}</code></pre>
+            </div>
+            
+            <h4>How to move up to the next grade band:</h4>
+            <div class="code-block">
+<pre><code>&lt;div&gt;
+  &lt;li&gt;Research: Find connections between different sources and your own ideas. Look for patterns, contradictions, or gaps that your work could address.&lt;/li&gt;
+  &lt;li&gt;Experimentation: Take more creative risks in your development work. Document your decision-making process, explaining why you chose certain directions over others.&lt;/li&gt;
+  &lt;li&gt;Communication: Refine your presentation skills to appear more professional. Consider how layout, typography, and visual hierarchy enhance understanding of your work.&lt;/li&gt;
+  &lt;li&gt;Development: Be more self-critical in your reflection. Identify specific strengths in your work and areas where you'd like to develop further expertise.&lt;/li&gt;
+  &lt;li&gt;Process: Demonstrate deeper engagement with feedback. Show how you've applied previous feedback to improve current work.&lt;/li&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+            
+            <h3>5.5 Third Class - 40-49%</h3>
+            
+            <h4>Assessment Criteria:</h4>
+            <div class="code-block">
+<pre><code>{ 
+  title: 'Research & Analysis', 
+  description: 'Your tutors are looking for research from standard sources that covers the basics of your topic. You should show basic knowledge and understanding of required skills, though your interpretation may not always be accurate or in-depth.' 
+},
+{ 
+  title: 'Experimentation & Practice', 
+  description: 'Your tutors want to see that you can work with established ideas, materials, and processes. Your technical skills should be adequate, though they may not always be consistently applied throughout your work.' 
+},
+{ 
+  title: 'Communication & Presentation', 
+  description: 'Your tutors expect adequate presentation that follows established conventions, though it may lack professional polish. Your work should communicate basic ideas but might not fully engage the audience.' 
+},
+{ 
+  title: 'Personal & Professional Development', 
+  description: 'Your tutors are looking for some awareness of your subject area and your personal strengths, though your reflection and planning may not be consistently applied. You should be able to work either independently or collaboratively.' 
+}</code></pre>
+            </div>
+            
+            <h4>How to move up to the next grade band:</h4>
+            <div class="code-block">
+<pre><code>&lt;div&gt;
+  &lt;li&gt;Research: Move beyond describing your sources to analyzing them. Ask questions like "Why is this relevant?" and "How does this connect to my project?"&lt;/li&gt;
+  &lt;li&gt;Experimentation: Push yourself to explore beyond your comfort zone. For each project, include at least one technique or approach that's new to you.&lt;/li&gt;
+  &lt;li&gt;Communication: Consider your audience more actively. Ask yourself "What does my viewer need to know?" and ensure your presentation addresses this.&lt;/li&gt;
+  &lt;li&gt;Development: Set specific learning goals for each project. Reflect on what you've achieved and what you still need to work on in your documentation.&lt;/li&gt;
+  &lt;li&gt;Process: Improve your documentation to show a clear journey from research through development to final outcomes. Make connections between these stages explicit.&lt;/li&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+            
+            <h3>5.6 Marginal Fail - 35-39%</h3>
+            
+            <h4>Assessment Criteria:</h4>
+            <div class="code-block">
+<pre><code>{ 
+  title: 'Research & Analysis', 
+  description: 'Your tutors are looking for more source information than is currently evidenced in your work. You need to show greater knowledge and understanding of the required skills and practices for this level of study.' 
+},
+{ 
+  title: 'Experimentation & Practice', 
+  description: 'Your tutors want to see more evidence of technique and exploration of alternatives. Your methods need to be more accurate and appropriate to solve even straightforward problems in your work.' 
+},
+{ 
+  title: 'Communication & Presentation', 
+  description: 'Your tutors expect more effective use of media and communication conventions in presenting your ideas. Your presentation skills need development to meet the requirements for this level of study.' 
+},
+{ 
+  title: 'Personal & Professional Development', 
+  description: 'Your tutors are looking for more awareness of your subject and personal strengths. You need to show more evidence of reflection, planning, and application. Your ability to work productively individually or in a team needs further development.' 
+}</code></pre>
+            </div>
+            
+            <h4>How to move up to the next grade band:</h4>
+            <div class="code-block">
+<pre><code>&lt;div&gt;
+  &lt;li&gt;Research: Expand your sources beyond the most obvious ones. For each project, aim to find at least 3-5 different references and explain why they're relevant.&lt;/li&gt;
+  &lt;li&gt;Experimentation: Demonstrate that you've tried multiple approaches before settling on a final direction. Show "what if" explorations in your development work.&lt;/li&gt;
+  &lt;li&gt;Communication: Improve the consistency and professionalism of your presentations. Pay attention to details like typography, layout, and image quality.&lt;/li&gt;
+  &lt;li&gt;Development: Begin to analyze your own strengths and weaknesses. Create simple action plans that show how you're addressing areas that need improvement.&lt;/li&gt;
+  &lt;li&gt;Process: Show evidence of planning and time management. Include research, development, and refinement stages in your project timeline.&lt;/li&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+            
+            <h3>5.7 Fail - 0-34%</h3>
+            
+            <h4>Assessment Criteria:</h4>
+            <div class="code-block">
+<pre><code>{ 
+  title: 'Research & Analysis', 
+  description: 'Your tutors need to see evidence of source information in your work. You must demonstrate knowledge and understanding of the required skills and practices for this level of study.' 
+},
+{ 
+  title: 'Experimentation & Practice', 
+  description: 'Your tutors expect to see evidence of technical skills and exploration of alternatives. You need to demonstrate adequate application of methods to meet basic requirements.' 
+},
+{ 
+  title: 'Communication & Presentation', 
+  description: 'Your tutors require effective use of media and communication conventions in presenting your ideas. Your presentation skills must meet minimum requirements for this level of study.' 
+},
+{ 
+  title: 'Personal & Professional Development', 
+  description: 'Your tutors need to see evidence of awareness of your subject area and personal strengths. You must demonstrate some reflection, planning, and application, and show that you can work productively either individually or in a team.' 
+}</code></pre>
+            </div>
+            
+            <h4>How to move up to the next grade band:</h4>
+            <div class="code-block">
+<pre><code>&lt;div&gt;
+  &lt;li&gt;Research: Start gathering information from reliable sources and include these references in your work. Build basic knowledge of key concepts and practices.&lt;/li&gt;
+  &lt;li&gt;Experimentation: Try different approaches and techniques rather than sticking with one method. Document your process, even when things don't work out.&lt;/li&gt;
+  &lt;li&gt;Communication: Focus on basic presentation skills—clean layouts, clear labels, and organized materials. Follow basic formatting guidelines for all submissions.&lt;/li&gt;
+  &lt;li&gt;Development: Attend all sessions and demonstrate engagement with feedback. Show that you're trying to apply advice from tutors in your revised work.&lt;/li&gt;
+  &lt;li&gt;Process: Keep a simple reflective journal documenting what you're learning and areas you find challenging.&lt;/li&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </section>
+        
+        <section id="grading-matrix">
+            <h2>6. Customising the Grading Matrix</h2>
+            
+            <p>The complete grading matrix provides an overview of all grade bands and criteria in a single table. This appears in a popup when students click the "Complete Grading Matrix" button.</p>
+            
+            <h3>6.1 Matrix Structure</h3>
+            <p>Look for the following section in the HTML file:</p>
+            
+            <div class="code-block">
+<pre><code>&lt;table className="min-w-full"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Criteria&lt;/th&gt;
+      {matrixGrades.map((grade) =&gt; (
+        &lt;th 
+          key={grade.id}
+          className={`${grade.color} ${grade.textColor}`}
+        &gt;
+          {grade.title} ({grade.range})
+        &lt;/th&gt;
+      ))}
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Research & Analysis&lt;/th&gt;
+      &lt;td&gt;Exceptional levels of research and synthesis. Original and convincing interpretation.&lt;/td&gt;
+      &lt;td&gt;Extensive research, independent synthesis and evaluation.&lt;/td&gt;
+      &lt;td&gt;Wide ranging and well-informed research and accurate evaluation.&lt;/td&gt;
+      &lt;td&gt;Accurate and appropriate research of elements.&lt;/td&gt;
+      &lt;td&gt;Adequate range from standard sources. May lack accurate interpretation&lt;/td&gt;
+      &lt;td&gt;Limited source information evidenced.&lt;/td&gt;
+      &lt;td&gt;Little or no source information evidenced.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;!-- More rows for other criteria --&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+            </div>
+            
+            <p>Customise each cell in the table with concise descriptions of the criteria for each grade band.</p>
+            
+            <div class="note">
+                <p><strong>Note:</strong> The matrix content should be concise summaries of the full criteria descriptions, as space is limited in the table format.</p>
+            </div>
+            
+            <h3>6.2 Matrix Content</h3>
+            <p>For each row in the matrix, you'll need to provide a brief description for each grade band. Here is the content you'll need to customise for each criterion:</p>
+            
+            <h4>Research & Analysis</h4>
+            <div class="code-block">
+<pre><code>&lt;td&gt;Exceptional levels of research and synthesis. Original and convincing interpretation.&lt;/td&gt;
+&lt;td&gt;Extensive research, independent synthesis and evaluation.&lt;/td&gt;
+&lt;td&gt;Wide ranging and well-informed research and accurate evaluation.&lt;/td&gt;
+&lt;td&gt;Accurate and appropriate research of elements.&lt;/td&gt;
+&lt;td&gt;Adequate range from standard sources. May lack accurate interpretation&lt;/td&gt;
+&lt;td&gt;Limited source information evidenced.&lt;/td&gt;
+&lt;td&gt;Little or no source information evidenced.&lt;/td&gt;</code></pre>
+            </div>
+            
+            <h4>Experimentation & Practice</h4>
+            <div class="code-block">
+<pre><code>&lt;td&gt;Excellent conceptual exploration and technical skills used to innovate and challenge convention.&lt;/td&gt;
+&lt;td&gt;Unified ideas and technical skills in realisation of unfamiliar concepts with evidence of critical judgement.&lt;/td&gt;
+&lt;td&gt;Evidence of conceptual risk taking and the use of personal critical evaluation to inform process and technique.&lt;/td&gt;
+&lt;td&gt;Evidence of exploration of materials and process. Technical procedures used consistently.&lt;/td&gt;
+&lt;td&gt;Operates within well-established ideas and processes. Adequate skills.&lt;/td&gt;
+&lt;td&gt;Very limited technique or exploration of alternatives.&lt;/td&gt;
+&lt;td&gt;Little or no technique or exploration of alternatives.&lt;/td&gt;</code></pre>
+            </div>
+            
+            <h4>Communication & Presentation</h4>
+            <div class="code-block">
+<pre><code>&lt;td&gt;Extremely clear, detailed and convincing realisation and presentation showing critical understanding of audience.&lt;/td&gt;
+&lt;td&gt;Sensitivity evident in origination and selection of material. Persuasive and convincing engagement of audience.&lt;/td&gt;
+&lt;td&gt;Selection, organisation and presentation shows very good awareness of audience and context.&lt;/td&gt;
+&lt;td&gt;Good judgement evident in selection and organisation of materials and conventions.&lt;/td&gt;
+&lt;td&gt;Adequate standards applied with clear structure though may lack awareness of audience.&lt;/td&gt;
+&lt;td&gt;Very limited use of media and communication conventions in presenting ideas.&lt;/td&gt;
+&lt;td&gt;Ineffective use of media and communication conventions in presenting ideas.&lt;/td&gt;</code></pre>
+            </div>
+            
+            <h4>Personal & Professional Development</h4>
+            <div class="code-block">
+<pre><code>&lt;td&gt;Integration of own identity in real or simulated work/subject contexts. Can work highly productively individually, in a team or in a leadership role.&lt;/td&gt;
+&lt;td&gt;Takes full responsibility for own learning understanding subject possibilities and requirements. Can work comfortably independently, in a team or as a leader.&lt;/td&gt;
+&lt;td&gt;Self-directed reflection and planning process clearly evidenced in the development of work and context of subject possibilities. Works well alone or in a collaborative team.&lt;/td&gt;
+&lt;td&gt;Actively working to develop understanding of subject and use process of reflection and effective planning to improve work. Productive working alone or in a team.&lt;/td&gt;
+&lt;td&gt;Evidence in awareness of subject and strengths, may lack consistency in applying reflection and planning. Able to work alone or collaboratively.&lt;/td&gt;
+&lt;td&gt;Limited awareness of subject, personal strengths or evidence of reflection or planning and application.&lt;/td&gt;
+&lt;td&gt;Little or no awareness of subject, personal strengths or evidence of reflection or planning and application.&lt;/td&gt;</code></pre>
+            </div>
+        </section>
+        
+        <section id="colour-customisation">
+            <h2>7. Colour Scheme Customisation</h2>
+            
+            <p>You may wish to customise the colours used for each grade band to match your departmental branding or to make them more accessible.</p>
+            
+            <h3>7.1 Colour Properties</h3>
+            <p>For each grade band in the <code>grades</code> array, you can modify the following properties:</p>
+            <ul>
+                <li><code>color</code>: The background colour (e.g., <code>bg-[#80FF80]</code>)</li>
+                <li><code>textColor</code>: The text colour (e.g., <code>text-black</code>)</li>
+            </ul>
+            
+            <h3>7.2 Kingston University Brand Colours</h3>
+            <p>If you wish to use the official Kingston University brand colours, here are the hex codes:</p>
+            <ul>
+                <li>KSA Yellow: <code>#FFF200</code></li>
+                <li>KU Logo White: <code>#FFFFFF</code></li>
+                <li>KU Logo Black: <code>#1D1D1B</code></li>
+                <li>KU Blue: <code>#002b49</code></li>
+                <li>KU Light Blue: <code>#009cde</code></li>
+                <li>KU Green: <code>#78be20</code></li>
+                <li>KU Orange: <code>#e35205</code></li>
+                <li>KU Amber: <code>#ffb500</code></li>
+                <li>KU Teal: <code>#77c5d5</code></li>
+                <li>KU Brown: <code>#857550</code></li>
+            </ul>
+            
+            <div class="tip">
+                <p><strong>Tip:</strong> When selecting colours, ensure there is sufficient contrast between the background and text colours for accessibility. You can check contrast ratios using tools like the <a href="https://webaim.org/resources/contrastchecker/" target="_blank">WebAIM Contrast Checker</a>.</p>
+            </div>
+        </section>
+        
+        <section id="testing-deployment">
+            <h2>8. Testing and Deployment</h2>
+            
+            <h3>8.1 Testing Your Customisations</h3>
+            <p>Before deploying your customised tool, test it thoroughly:</p>
+            <ol>
+                <li>Open the HTML file in a web browser to ensure it displays correctly</li>
+                <li>Test all interactive elements (grade band buttons, grading matrix popup)</li>
+                <li>Check that all your customised text appears correctly</li>
+                <li>Verify that the colours display as expected</li>
+                <li>Test on different devices (desktop, tablet, mobile) if possible</li>
+            </ol>
+            
+            <h3>8.2 Deploying to Canvas VLE</h3>
+            <p>To deploy your customised tool to Canvas:</p>
+            <ol>
+                <li>Log in to your Canvas course</li>
+                <li>Create a new page or edit an existing page</li>
+                <li>Click on the HTML Editor button (<code>&lt;/&gt;</code>) in the Rich Content Editor</li>
+                <li>Copy and paste your entire customised HTML file content</li>
+                <li>Save the page</li>
+            </ol>
+            
+            <div class="note">
+                <p><strong>Note:</strong> If you're using a custom header image, you'll need to upload it to Canvas Files first and update the image path in your HTML accordingly.</p>
+            </div>
+        </section>
+        
+        <section id="troubleshooting">
+            <h2>9. Troubleshooting</h2>
+            
+            <h3>9.1 Common Issues</h3>
+            <p>Here are some common issues you might encounter and how to resolve them:</p>
+            
+            <div class="callout">
+                <div class="callout-title">Issue: Page doesn't load or displays incorrectly</div>
+                <p><strong>Solution:</strong> Check for syntax errors in your HTML or JavaScript code. Look for missing closing tags, quotes, or brackets.</p>
+            </div>
+            
+            <div class="callout">
+                <div class="callout-title">Issue: Interactive elements don't work</div>
+                <p><strong>Solution:</strong> Ensure you haven't accidentally removed or modified essential JavaScript functions or event handlers.</p>
+            </div>
+            
+            <div class="callout">
+                <div class="callout-title">Issue: Images don't display</div>
+                <p><strong>Solution:</strong> Verify the image paths are correct and that images have been uploaded to the correct location in your Canvas course.</p>
+            </div>
+            
+            <div class="callout">
+                <div class="callout-title">Issue: Text appears in the wrong language</div>
+                <p><strong>Solution:</strong> Make sure you've updated all text content in the file, including any hidden or less obvious sections.</p>
+            </div>
+            
+            <h3>9.2 Getting Help</h3>
+            <p>If you encounter issues you can't resolve:</p>
+            <ul>
+                <li>Consult your faculty's digital learning team or e-learning specialists</li>
+                <li>Contact <a href="mailto:m.mounsey-wood@kingston.ac.uk">m.mounsey-wood@kingston.ac.uk</a> for assistance with the Understanding Grade Descriptors tool specifically</li>
+                <li>Refer to the <a href="https://github.com/MounseyWood/Understanding-Grade-Descriptors-v4">GitHub repository</a> for the latest version and any additional documentation</li>
+            </ul>
+        </section>
+        
+        <section id="conclusion">
+            <h2>10. Conclusion</h2>
+            
+            <p>By customising the Understanding Grade Descriptors tool for your programme, you can provide your students with a clear, interactive guide to assessment criteria that helps them understand what is expected at each grade level and how they can improve their performance.</p>
+            
+            <p>Remember that the tool should be reviewed and updated regularly to ensure it remains aligned with your programme's assessment criteria and pedagogical approach.</p>
+            
+            <p>We hope this guide has been helpful. If you have suggestions for improving either the tool or this guide, please contact <a href="mailto:m.mounsey-wood@kingston.ac.uk">m.mounsey-wood@kingston.ac.uk</a>.</p>
+        </section>
+        
+        <footer>
+            <p>Kingston University London, Kingston School of Art</p>
+            <p>© 2025 Kingston University. All rights reserved.</p>
+            <p>Version 1.0 | April 2025</p>
+        </footer>
+    </div>
+</body>
+</html>
