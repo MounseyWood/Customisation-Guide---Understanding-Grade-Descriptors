@@ -37,7 +37,7 @@
         body {
             font-family: 'Inter', Arial, Helvetica, sans-serif;
             line-height: 1.6;
-            color: var(--ku-black);
+            color: black;
             background-color: var(--ku-white);
             padding: 0;
             max-width: 1000px;
@@ -52,33 +52,33 @@
             text-align: center;
             margin-bottom: 2rem;
             padding-bottom: 1rem;
-            border-bottom: 4px solid var(--ku-yellow);
+            border-bottom: 4px solid var(--ku-blue);
         }
         
         h1 {
             font-size: 2.2rem;
             margin-bottom: 1rem;
-            color: var(--ku-blue);
+            color: black;
         }
         
         h2 {
             font-size: 1.8rem;
             margin: 2rem 0 1rem;
-            color: var(--ku-blue);
-            border-bottom: 2px solid var(--ku-grey-200);
+            color: black;
+            border-bottom: 2px solid var(--ku-blue);
             padding-bottom: 0.5rem;
         }
         
         h3 {
             font-size: 1.4rem;
             margin: 1.5rem 0 1rem;
-            color: var(--ku-blue);
+            color: black;
         }
         
         h4 {
             font-size: 1.2rem;
             margin: 1.2rem 0 0.8rem;
-            color: var(--ku-blue);
+            color: black;
         }
         
         p {
@@ -127,21 +127,21 @@
         
         .note {
             background-color: var(--ku-grey-100);
-            border-left: 4px solid var(--ku-light-blue);
+            border-left: 4px solid var(--ku-blue);
             padding: 1rem;
             margin: 1.5rem 0;
         }
         
         .warning {
             background-color: var(--ku-grey-100);
-            border-left: 4px solid var(--ku-orange);
+            border-left: 4px solid var(--ku-blue);
             padding: 1rem;
             margin: 1.5rem 0;
         }
         
         .tip {
             background-color: var(--ku-grey-100);
-            border-left: 4px solid var(--ku-green);
+            border-left: 4px solid var(--ku-blue);
             padding: 1rem;
             margin: 1.5rem 0;
         }
@@ -337,7 +337,7 @@
             <ol>
                 <li>The GitHub repository: <a href="https://github.com/MounseyWood/Understanding-Grade-Descriptors-v4">https://github.com/MounseyWood/Understanding-Grade-Descriptors-v4</a></li>
                 <li>Your faculty's shared resources folder</li>
-                <li>By contacting <a href="mailto:m.mounsey-wood@kingston.ac.uk">m.mounsey-wood@kingston.ac.uk</a></li>
+                <li>By contacting your Canvas Administrator, Associate Professor David Lawrence <a href="mailto:d.lawrence@kingston.ac.uk">d.lawrence@kingston.ac.uk</a></li>
             </ol>
             
             <h3>2.3 Opening the File</h3>
@@ -349,6 +349,58 @@
                 <li>Improvement advice for each grade band</li>
                 <li>Complete grading matrix content</li>
             </ul>
+            
+            <h3>2.4 Code Annotation for Easy Customisation</h3>
+            <p>The HTML file includes helpful annotations throughout the code to help non-technical faculty find the right areas to modify. Here's an example of annotated code:</p>
+            
+            <div class="code-block">
+<pre><code>/**
+ * ==============================================
+ * GRADE DATA
+ * ==============================================
+ * This array contains all the grade bands and their descriptions.
+ *
+ * @author Matthew Mounsey-Wood &lt;m.mounsey-wood@kingston.ac.uk&gt;
+ * @created April 29, 2025
+ * @version 1.0
+ * Please note, the 'School of Design Curriculum Framework', drafted March 2025 has been used to create this document.
+ * 
+ * CUSTOMIZATION GUIDE:
+ * - To add a new grade band: Copy an existing object and modify all properties
+ * - To change a grade band: Modify the relevant object properties
+ * - Required properties for each grade:
+ *   - id: Unique identifier (used for selection)
+ *   - title: Display name
+ *   - range: Percentage range text
+ *   - color: Background color (Tailwind class or hex)
+ *   - textColor: Text color (Tailwind class)
+ *   - qualities: Array of assessment criteria objects
+ */</code></pre>
+            </div>
+            
+            <h3>2.5 Author and Version Information</h3>
+            <p>When customising the tool, be sure to update the author and version information in the code. This helps track who made changes and when. Here's how it's done in the original code:</p>
+            
+            <div class="code-block">
+<pre><code>/**
+ * @author Matthew Mounsey-Wood &lt;m.mounsey-wood@kingston.ac.uk&gt;
+ * @created April 29, 2025
+ * @version 1.0
+ * @modified April 29, 2025 - Fixed browser compatibility issues
+ */</code></pre>
+            </div>
+            
+            <p>When making your own changes, add your information following the same convention:</p>
+            
+            <div class="code-block">
+<pre><code>/**
+ * @author Original: Matthew Mounsey-Wood
+ * @author Modified: [Your Name] &lt;your.email@kingston.ac.uk&gt;
+ * @created April 29, 2025
+ * @version 1.1
+ * @modified [Current Date] - [Brief description of your changes]
+ */</code></pre>
+            </div>
             
             <div class="tip">
                 <p><strong>Tip:</strong> Before making any changes, create a backup copy of the original file. This will allow you to revert if needed.</p>
@@ -413,9 +465,9 @@
         </section>
         
         <section id="assessment-criteria">
-            <h2>4. Customising Assessment Criteria</h2>
+            <h2>4. Customising Learning Outcomes and Assessment Criteria</h2>
             
-            <p>Each grade band contains assessment criteria organised into four categories aligned with the School of Design Curriculum Framework. You'll need to customise these descriptions to match your programme's specific requirements.</p>
+            <p>Each grade band contains assessment criteria organised into four categories aligned with the School of Design Curriculum Framework. You'll need to customise these descriptions to match your programme's specific learning outcomes and assessment requirements.</p>
             
             <h3>4.1 Assessment Criteria Structure</h3>
             <p>The criteria are stored in the <code>qualities</code> array for each grade band:</p>
@@ -786,7 +838,19 @@
                 <li><code>textColor</code>: The text colour (e.g., <code>text-black</code>)</li>
             </ul>
             
-            <h3>7.2 Kingston University Brand Colours</h3>
+            <h3>7.2 Grade Band Colour System</h3>
+            <p>The tool uses a 'traffic-light' colour system to denote grade bands, from high (green) through amber to low (red). Here are the hex codes:</p>
+            <ul>
+                <li>Distinction (85% and above): <code>#80FF80</code> (bright green)</li>
+                <li>First Class (70-84%): <code>#BFFF80</code> (light green)</li>
+                <li>Upper Second (60-69%): <code>#FFFF80</code> (yellow)</li>
+                <li>Lower Second (50-59%): <code>#FFE880</code> (light amber)</li>
+                <li>Third Class (40-49%): <code>#FFCC80</code> (amber)</li>
+                <li>Marginal Fail (35-39%): <code>#FF9980</code> (light red)</li>
+                <li>Fail (0-34%): <code>#FF8080</code> (red)</li>
+            </ul>
+            
+            <h3>7.3 Kingston University Brand Colours</h3>
             <p>If you wish to use the official Kingston University brand colours, here are the hex codes:</p>
             <ul>
                 <li>KSA Yellow: <code>#FFF200</code></li>
@@ -864,7 +928,7 @@
             <p>If you encounter issues you can't resolve:</p>
             <ul>
                 <li>Consult your faculty's digital learning team or e-learning specialists</li>
-                <li>Contact <a href="mailto:m.mounsey-wood@kingston.ac.uk">m.mounsey-wood@kingston.ac.uk</a> for assistance with the Understanding Grade Descriptors tool specifically</li>
+                <li>Contact your Canvas Administrator, Associate Professor David Lawrence <a href="mailto:d.lawrence@kingston.ac.uk">d.lawrence@kingston.ac.uk</a> for assistance with the Understanding Grade Descriptors tool specifically</li>
                 <li>Refer to the <a href="https://github.com/MounseyWood/Understanding-Grade-Descriptors-v4">GitHub repository</a> for the latest version and any additional documentation</li>
             </ul>
         </section>
@@ -876,7 +940,7 @@
             
             <p>Remember that the tool should be reviewed and updated regularly to ensure it remains aligned with your programme's assessment criteria and pedagogical approach.</p>
             
-            <p>We hope this guide has been helpful. If you have suggestions for improving either the tool or this guide, please contact <a href="mailto:m.mounsey-wood@kingston.ac.uk">m.mounsey-wood@kingston.ac.uk</a>.</p>
+            <p>We hope this guide has been helpful. If you have suggestions for improving either the tool or this guide, please contact your Canvas Administrator, Associate Professor David Lawrence <a href="mailto:d.lawrence@kingston.ac.uk">d.lawrence@kingston.ac.uk</a>.</p>
         </section>
         
         <footer>
